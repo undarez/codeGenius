@@ -1,0 +1,62 @@
+@import'../../utils/typographies';
+
+.container-propos{
+    width: 1240px;
+    height: auto;
+    background-color: #F5DEB3;
+    border-radius: 10px 10px 0 0;
+
+    .titre-propos{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-family:$police-paragraphe ;
+        font-weight: 500;
+        padding-top: 10px;
+    }
+    .titre-h2-propos{
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .paragraphe-propos{
+        width: 100%;
+        height: 200px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 2px;
+        font-size: 14px;
+
+    }
+};
+
+@media screen and ( max-width:1024px ){
+    .container-propos{
+        width: 100%;
+       .paragraphe-propos{
+        // width: 95%;
+       }
+    }
+};
+@media screen and ( max-width:768px ){
+    .container-propos{
+       .paragraphe-propos{
+        // width: 95%;
+        font-size: 16px
+       }
+    }
+};
+@media screen and ( max-width:320px ){
+    .container-propos{
+       .paragraphe-propos{
+        font-size: 10px;
+        justify-content: center
+       }
+    }
+};
+
+

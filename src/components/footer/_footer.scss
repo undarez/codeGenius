@@ -1,0 +1,76 @@
+@import'../../utils/typographies';
+
+footer {
+    width: 100%;
+    height: auto;
+    .container-footer {
+        border: 5px solid #3CA49C;
+        border-radius: 10px 10px 0px 0px;
+
+        .container-link{
+            padding: 10px;
+            margin: 0 auto;
+            list-style: none;
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+
+            .typo {
+                cursor: pointer;
+                text-decoration: none;
+                color: black;
+
+                font: {
+                    size: 18px;
+                    family: $police-paragraphe;
+                    weight: 500;
+                }
+            }
+
+            .typo:hover {
+                color: white;
+                border-radius: 5px;
+                background: #3CA49C;
+                background: -moz-linear-gradient(45deg, #3CA49C 0%, #FFB347 60%, #FF6961 100%);
+                background: -webkit-linear-gradient(45deg, #3CA49C 0%, #FFB347 60%, #FF6961 100%);
+                background: linear-gradient(45deg, #3CA49C 0%, #FFB347 60%, #FF6961 100%);
+            }
+        }
+    }
+};
+
+// debut media querry
+
+@media screen and (max-width:1024px) {
+    footer {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        .container-footer{
+            width: 70%;
+        }
+    }
+};
+@media screen and (max-width:425px) {
+    footer {
+        display: flex;
+        width: 100%;
+        .container-footer{
+            width: 100%;
+            height: 80px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            .container-link{
+                width: 75%;
+                height: 120px;
+                display: flex;
+                .typo{
+                    // margin-left: 30px;
+                    font-size: 18px
+                }
+            }
+        }
+    }
+};
