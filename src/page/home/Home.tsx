@@ -9,21 +9,48 @@ const Home = () => {
             e: React.MouseEvent<HTMLButtonElement, MouseEvent>
       ): void => {
             e.preventDefault();
-            //1 recuperer l'id creer sur le qrcode
-            const qrCodeSvg = document.getElementById('qr-code-svg');
-            //recuperer le svg du qrcode
-            const svgData = new XMLSerializer().serializeToString(qrCodeSvg!);
-            //creation d'un nouveau tableau qui contien le contenu du svg
+            const qrCodeSvg = document.getElementById(
+                  'qr-code-svg'
+            ) as HTMLElement;
+            const svgData = new XMLSerializer().serializeToString(qrCodeSvg);
             const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
-            //creatien du url pour dll
-            const url = URL.createObjectURL(svgBlob);
-            //creation link
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'qr-code-svg';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const svgUrl = URL.createObjectURL(svgBlob);
+
+            const downloadWindow = window.open(svgUrl, '_blank');
+            downloadWindow!.document.write(`
+              <html>
+                <head>
+                  <style>
+                    #qr-code-svg {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      position: absolute;
+                      left: 50%;
+                      top: 50%;
+                      transform: translate(-50%,-50%);
+                      width: 180px;
+                      height: 180px;
+                      margin: 0;
+                      padding: 0;
+                    }
+                  </style>
+                </head>
+                <body>
+                  ${qrCodeSvg.outerHTML}
+                </body>
+              </html>
+            `);
+            downloadWindow!.focus();
+            downloadWindow!.document.title = 'QR Code';
+            downloadWindow!.document.body.appendChild(
+                  qrCodeSvg.cloneNode(true)
+            );
+            downloadWindow!.document.body.style.margin = '0';
+            downloadWindow!.document.body.style.padding = '0';
+
+            qrCodeSvg.style.display = ''; // Réinitialiser le display après le téléchargement
+            qrCodeSvg.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
       };
 
       //function print qrcode
@@ -31,15 +58,46 @@ const Home = () => {
             e: React.MouseEvent<HTMLButtonElement, MouseEvent>
       ): void => {
             e.preventDefault();
-            const qrCodeSvg = document.getElementById('qr-code-svg');
-            const printWindow = window.open(
-                  '',
-                  'PrintWindow',
-                  'windowFeatures = left= 320,top=320 '
-            );
-            printWindow!.document.write(qrCodeSvg!.outerHTML);
+            const qrCodeSvg = document.getElementById(
+                  'qr-code-svg'
+            ) as HTMLElement;
+            const qrcodeplacement = document.createElement('div');
+            qrcodeplacement.appendChild(qrCodeSvg);
+
+            const printWindow = window.open('', 'PrintWindow');
+            //structure html permettant de positionner le qrcode au centre lors de l'impression
+            printWindow!.document.write(`
+              <html>
+                <head>
+                  <style>
+                    @media print {
+                      #qr-code-svg {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        width: 180px;
+                        height: 180px;
+                        margin: 0;
+                        padding: 0;
+                      }
+                    }
+                  </style>
+                </head>
+                <body>
+                  ${qrCodeSvg.outerHTML}
+                </body>
+              </html>
+            `);
+
             printWindow!.print();
             printWindow!.close();
+
+            qrCodeSvg.style.display = ''; // Réinitialiser le display après l'impression
+            qrCodeSvg.style.justifyContent = ''; // Réinitialiser le justify-content après l'impression
       };
 
       //function dll code barre
@@ -50,13 +108,42 @@ const Home = () => {
             const barcodeSvg = document.getElementById('barcode-svg');
             const svgData = new XMLSerializer().serializeToString(barcodeSvg!);
             const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
-            const url = URL.createObjectURL(svgBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'barcode-svg';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const svgUrl = URL.createObjectURL(svgBlob);
+            const downloadWindow = window.open(svgUrl, '_blank');
+            downloadWindow!.document.write(`
+            <html>
+                <head>
+                  <style>
+                    #barcode-svg {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      position: absolute;
+                      left: 50%;
+                      top: 50%;
+                      transform: translate(-50%,-50%);
+                      width: 180px;
+                      height: 180px;
+                      margin: 0;
+                      padding: 0;
+                    }
+                  </style>
+                </head>
+                <body>
+                  ${barcodeSvg!.outerHTML}
+                </body>
+              </html>
+            `);
+            downloadWindow!.focus();
+            downloadWindow!.document.title = 'Code-Barre';
+            downloadWindow!.document.body.appendChild(
+                  barcodeSvg!.cloneNode(true)
+            );
+            downloadWindow!.document.body.style.margin = '0';
+            downloadWindow!.document.body.style.padding = '0';
+
+            barcodeSvg!.style.display = ''; // Réinitialiser le display après le téléchargement
+            barcodeSvg!.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
       };
 
       //function print code barre
@@ -64,13 +151,40 @@ const Home = () => {
             e: React.MouseEvent<HTMLButtonElement, MouseEvent>
       ): void => {
             e.preventDefault();
-            const barcodeSvg = document.getElementById('barcode-svg');
-            const printWindow = window.open(
-                  '',
-                  'PrintWindow',
-                  'windowFeatures = left= 320,top=320 '
-            );
-            printWindow!.document.write(barcodeSvg!.outerHTML);
+            const barcodeSvg = document.getElementById(
+                  'barcode-svg'
+            ) as HTMLElement;
+            const codeBarrePlacement = document.createElement('div');
+            codeBarrePlacement.appendChild(barcodeSvg);
+            const printWindow = window.open('', 'PrintWindow');
+            //structure html permettant de positionner le code barre au centre lors de l'impression
+            printWindow!.document.write(`
+            
+            <html>
+                <head>
+                  <style>
+                    @media print {
+                      #barcode-svg {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                        width: 180px;
+                        height: 180px;
+                        margin: 0;
+                        padding: 0;
+                      }
+                    }
+                  </style>
+                </head>
+                <body>
+                  ${barcodeSvg!.outerHTML}
+                </body>
+              </html>
+            `);
             printWindow!.print();
             printWindow!.close();
       };

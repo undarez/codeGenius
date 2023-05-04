@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Propos } from '../ExportDefault';
 import './_layout.scss';
 import Header from '../components/Header/Header';
-import Footer from '../components/footer/Footer';
 const Layout: any = () => {
       return (
             <BrowserRouter>
@@ -18,7 +17,6 @@ const Layout: any = () => {
                                     />
                               </Routes>
                         </main>
-                        <Footer />
                   </div>
             </BrowserRouter>
       );

@@ -5,6 +5,7 @@
     height: auto;
     background-color: #F5DEB3;
     border-radius: 10px 10px 0 0;
+    margin-top: 20px;
 
     .titre-propos{
         display: flex;
@@ -13,7 +14,7 @@
         font-size: 30px;
         font-family:$police-paragraphe ;
         font-weight: 500;
-        padding-top: 10px;
+        padding-top: 30px;
     }
     .titre-h2-propos{
         font-size: 25px;
@@ -30,6 +31,7 @@
         align-items: center;
         letter-spacing: 2px;
         font-size: 14px;
+        padding: 20px
 
     }
 };
