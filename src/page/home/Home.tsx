@@ -302,8 +302,13 @@ const Home = () => {
                                     Print
                               </button>
                         </div>
+                  <div container-copy>
+
+                  <p className='copyright'>&copy; 2023 code-genius.vercel.app/</p>
+                  </div>
                   </form>
             </div>
+            
       );
 };
 

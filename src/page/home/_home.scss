@@ -25,7 +25,19 @@ body{
     height: auto;
     padding: 40px;
 
-    //appel de l'id sur le qr code pour placer l'image lors de l'impression et du dll
+    .container-copy{
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+    }
+    .copyright{
+        font-size: 18px;
+        font-family: $police-input;
+        font-weight: 600;
+
+    }
+   
 
 
     .container-form {
