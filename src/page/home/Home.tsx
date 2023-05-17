@@ -54,7 +54,47 @@ const Home = () => {
       };
 
       //function print qrcode
-     
+
+      const printQRCode = () => {
+            const qrCodeSvg = document.getElementById(
+                  'qr-code-svg'
+            ) as HTMLElement;
+            const printWindow = window.open(
+                  '',
+                  '_blank',
+                  'width=1000,height=1200'
+            );
+
+            if (printWindow) {
+                  printWindow.document.write(`<html>
+              <head>
+                <style>
+                 div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                  }
+                </style>
+              </head>
+              <body>
+              <div>
+              ${qrCodeSvg!.outerHTML}
+                  
+              </div>
+              </body>
+            </html>`);
+                  //   printWindow.document.write(qrCodeSvg.outerHTML);
+                  printWindow.document.write('</body></html>');
+                  printWindow.document.close();
+                  printWindow.print();
+            } else {
+                  console.error("Impossible d'ouvrir la fenêtre d'impression");
+            }
+      };
 
       //function dll code barre
       const handleDllBarcode = (
@@ -100,6 +140,47 @@ const Home = () => {
 
             barcodeSvg!.style.display = ''; // Réinitialiser le display après le téléchargement
             barcodeSvg!.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
+      };
+
+      //function print codebarre
+
+      const printBarrecode = () => {
+            const barcodeSvg = document.getElementById('barcode-svg');
+            const printWindow = window.open(
+                  '',
+                  '_blank',
+                  'width=1000,height=1200'
+            );
+
+            if (printWindow) {
+                  printWindow.document.write(`<html>
+              <head>
+                <style>
+                 div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                  }
+                </style>
+              </head>
+              <body>
+              <div>
+              ${barcodeSvg!.outerHTML}
+                  
+              </div>
+              </body>
+            </html>`);
+                  //   printWindow.document.write(qrCodeSvg.outerHTML);
+                  printWindow.document.write('</body></html>');
+                  printWindow.document.close();
+                  printWindow.print();
+            } else {
+                  console.error("Impossible d'ouvrir la fenêtre d'impression");
+            }
       };
 
       //useState pour qrCode
@@ -186,7 +267,12 @@ const Home = () => {
                               >
                                     Download
                               </button>
-                             
+                              <button
+                                    className="buttonCss"
+                                    onClick={printQRCode}
+                              >
+                                    Print
+                              </button>
                         </div>
                         <br />
                         <div id="barcode-svg">
@@ -203,14 +289,23 @@ const Home = () => {
                               >
                                     Download
                               </button>
-                             
+                              <button
+                                    className="buttonCss"
+                                    onClick={printBarrecode}
+                              >
+                                    Print
+                              </button>
                         </div>
-                  <div container-copy>
-                  <a href="https://github.com/undarez" className='copyright'>&copy; 2023 CodeGénius By undarez</a>
-                  </div>
+                        <div container-copy>
+                              <a
+                                    href="https://github.com/undarez"
+                                    className="copyright"
+                              >
+                                    &copy; 2023 CodeGénius By undarez
+                              </a>
+                        </div>
                   </form>
             </div>
-            
       );
 };
 
