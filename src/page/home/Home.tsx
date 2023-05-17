@@ -54,51 +54,7 @@ const Home = () => {
       };
 
       //function print qrcode
-      const handlePrintQrcode = (
-            e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-      ): void => {
-            e.preventDefault();
-            const qrCodeSvg = document.getElementById(
-                  'qr-code-svg'
-            ) as HTMLElement;
-            const qrcodeplacement = document.createElement('div');
-            qrcodeplacement.appendChild(qrCodeSvg);
-
-            const printWindow = window.open('', 'PrintWindow');
-            //structure html permettant de positionner le qrcode au centre lors de l'impression
-            printWindow!.document.write(`
-              <html>
-                <head>
-                  <style>
-                    @media print {
-                      #qr-code-svg {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        transform: translate(-50%,-50%);
-                        width: 180px;
-                        height: 180px;
-                        margin: 0;
-                        padding: 0;
-                      }
-                    }
-                  </style>
-                </head>
-                <body>
-                  ${qrCodeSvg.outerHTML}
-                </body>
-              </html>
-            `);
-
-            printWindow!.print();
-            printWindow!.close();
-
-            qrCodeSvg.style.display = ''; // Réinitialiser le display après l'impression
-            qrCodeSvg.style.justifyContent = ''; // Réinitialiser le justify-content après l'impression
-      };
+     
 
       //function dll code barre
       const handleDllBarcode = (
@@ -144,49 +100,6 @@ const Home = () => {
 
             barcodeSvg!.style.display = ''; // Réinitialiser le display après le téléchargement
             barcodeSvg!.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
-      };
-
-      //function print code barre
-      const handlePrintBarcode = (
-            e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-      ): void => {
-            e.preventDefault();
-            const barcodeSvg = document.getElementById(
-                  'barcode-svg'
-            ) as HTMLElement;
-            const codeBarrePlacement = document.createElement('div');
-            codeBarrePlacement.appendChild(barcodeSvg);
-            const printWindow = window.open('', 'PrintWindow');
-            //structure html permettant de positionner le code barre au centre lors de l'impression
-            printWindow!.document.write(`
-            
-            <html>
-                <head>
-                  <style>
-                    @media print {
-                      #barcode-svg {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        position: absolute;
-                        left: 50%;
-                        top: 50%;
-                        transform: translate(-50%,-50%);
-                        width: 180px;
-                        height: 180px;
-                        margin: 0;
-                        padding: 0;
-                      }
-                    }
-                  </style>
-                </head>
-                <body>
-                  ${barcodeSvg!.outerHTML}
-                </body>
-              </html>
-            `);
-            printWindow!.print();
-            printWindow!.close();
       };
 
       //useState pour qrCode
@@ -273,12 +186,7 @@ const Home = () => {
                               >
                                     Download
                               </button>
-                              <button
-                                    className="buttonCss"
-                                    onClick={handlePrintQrcode}
-                              >
-                                    Print
-                              </button>
+                             
                         </div>
                         <br />
                         <div id="barcode-svg">
@@ -295,16 +203,10 @@ const Home = () => {
                               >
                                     Download
                               </button>
-                              <button
-                                    className="buttonCss"
-                                    onClick={handlePrintBarcode}
-                              >
-                                    Print
-                              </button>
+                             
                         </div>
                   <div container-copy>
-
-                  <p className='copyright'>&copy; 2023 code-genius.vercel.app/</p>
+                  <a href="https://github.com/undarez" className='copyright'>&copy; 2023 CodeGénius By undarez</a>
                   </div>
                   </form>
             </div>
