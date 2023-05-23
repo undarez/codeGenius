@@ -41,14 +41,11 @@ const Home = () => {
                 </body>
               </html>
             `);
-            downloadWindow!.focus();
-            downloadWindow!.document.title = 'QR Code';
-            downloadWindow!.document.body.appendChild(
-                  qrCodeSvg.cloneNode(true)
-            );
-            downloadWindow!.document.body.style.margin = '0';
-            downloadWindow!.document.body.style.padding = '0';
-
+            const downloadLink = document.createElement('a');
+            downloadLink.href = svgUrl;
+            downloadLink.download = 'qrcode.svg';
+            downloadLink.click();
+          
             qrCodeSvg.style.display = ''; // Réinitialiser le display après le téléchargement
             qrCodeSvg.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
       };
@@ -130,14 +127,11 @@ const Home = () => {
                 </body>
               </html>
             `);
-            downloadWindow!.focus();
-            downloadWindow!.document.title = 'Code-Barre';
-            downloadWindow!.document.body.appendChild(
-                  barcodeSvg!.cloneNode(true)
-            );
-            downloadWindow!.document.body.style.margin = '0';
-            downloadWindow!.document.body.style.padding = '0';
-
+            const downloadLink = document.createElement('a');
+            downloadLink.href = svgUrl;
+            downloadLink.download = 'barcode.svg';
+            downloadLink.click();
+          
             barcodeSvg!.style.display = ''; // Réinitialiser le display après le téléchargement
             barcodeSvg!.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
       };
