@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../asset/logoqrgenius.png';
+import {logo} from '../../asset';
 import { useDimension } from '../useDimension/useDimension';
 import { useDisplayNone } from '../useDisplayNone/useDisplayNone';
 import './_header.scss';

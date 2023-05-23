@@ -46,8 +46,6 @@ const Home = () => {
             downloadLink.download = 'qrcode.svg';
             downloadLink.click();
           
-            qrCodeSvg.style.display = ''; // Réinitialiser le display après le téléchargement
-            qrCodeSvg.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
       };
 
       //function print qrcode
@@ -132,8 +130,7 @@ const Home = () => {
             downloadLink.download = 'barcode.svg';
             downloadLink.click();
           
-            barcodeSvg!.style.display = ''; // Réinitialiser le display après le téléchargement
-            barcodeSvg!.style.justifyContent = ''; // Réinitialiser le justify-content après le téléchargement
+            
       };
 
       //function print codebarre

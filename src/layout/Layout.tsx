@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Propos } from '../ExportDefault';
 import './_layout.scss';
-import Header from '../components/Header/Header';
+import {Header} from '../components';
 const Layout: any = () => {
       return (
             <BrowserRouter>

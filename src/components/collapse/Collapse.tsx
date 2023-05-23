@@ -3,7 +3,8 @@ import './_collapse.scss';
 //import du chevron img
 import { ReactComponent as Chevron } from '../../asset/chevronDown.svg';
 
-const Collapse = ({title, content}):JSX.Element => {
+
+const Collapse = ({title, content}:{title:string, content:string}):JSX.Element => {
     const[isOpen, setIsOpen] = useState(false);
     //isopen est sur fermer de base donc le collapse est fermer
   return (
