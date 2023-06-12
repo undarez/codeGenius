@@ -1,23 +1,24 @@
 @import'../../utils/typographies';
 body{
-    animation: bgAnim 10s infinite alternate linear;
-}
-@keyframes bgAnim {
-    0% {
-        background-color: #EE6055;
-    }
-    25%{
-        background-color: #eeC355;
-    }
-    50%{
-        background-color: #8AFE76;
-    }
-    75%{
-        background-color: #55D2EE;
-    }
-    100%{
-        background-color: #EE55EE;
-    }
+    background-color: #e0d8d8;
+//     animation: bgAnim 10s infinite alternate linear;
+// }
+// @keyframes bgAnim {
+//     0% {
+//         background-color: #EE6055;
+//     }
+//     25%{
+//         background-color: #eeC355;
+//     }
+//     50%{
+//         background-color: #8AFE76;
+//     }
+//     75%{
+//         background-color: #55D2EE;
+//     }
+//     100%{
+//         background-color: #EE55EE;
+//     }
 }
 .container-qrcode {
     display: flex;

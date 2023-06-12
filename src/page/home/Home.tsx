@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Barcode from 'react-barcode';
 import { QRCodeSVG } from 'qrcode.react';
+import SelectedLocation,{CR1Placement} from '../../components/selectLocation/SelectedLocation'
+import DataLocation from'../../JSON/Location.json'
 import './_home.scss';
 
 const Home = () => {
@@ -179,9 +181,14 @@ const Home = () => {
       const [sizeState, setsizeState] = useState(180);
       const [bgColorState, setbgColorState] = useState('#ffffff');
       const [colorState, setColorState] = useState('#000000');
+      const [selectedLocation, setSelectedLocation] = useState<CR1Placement | null>(null);
+
+      
       return (
             <div className="container-qrcode" id="image-Qrcode">
                   <form action="" method="get" className="container-form">
+                  <SelectedLocation data={DataLocation} update={setSelectedLocation}
+                  />
                         <label className="labelCss" htmlFor="sizeQrCode">
                               Entrée la taille en px de votre Qr-Code par
                               default (180px):
@@ -235,7 +242,7 @@ const Home = () => {
                         <QRCodeSVG
                               //création d'un Id pour que l'utilisateur puisse imprimé le QRcode et ou le code barre.
                               id="qr-code-svg"
-                              value={text}
+                              value={selectedLocation?.Id.toString() ||text}
                               size={sizeState}
                               bgColor={bgColorState}
                               fgColor={colorState}
@@ -268,7 +275,7 @@ const Home = () => {
                         <br />
                         <div id="barcode-svg">
                               <Barcode
-                                    value={text}
+                                    value={selectedLocation?.Id.toString() ||text}
                                     background={bgColorState}
                                     lineColor={colorState}
                               />
