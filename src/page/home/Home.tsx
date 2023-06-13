@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Barcode from 'react-barcode';
 import { QRCodeSVG } from 'qrcode.react';
-import SelectedLocation,{CR1Placement} from '../../components/selectLocation/SelectedLocation'
+import SelectedLocation, { CR1Placement } from '../../components/selectLocation/SelectedLocation'
 import DataLocation from'../../JSON/Location.json'
 import './_home.scss';
 
@@ -181,7 +181,7 @@ const Home = () => {
       const [sizeState, setsizeState] = useState(180);
       const [bgColorState, setbgColorState] = useState('#ffffff');
       const [colorState, setColorState] = useState('#000000');
-      const [selectedLocation, setSelectedLocation] = useState<CR1Placement | null>(null);
+      const [selectedLocation, setSelectedLocation] = useState<CR1Placement>();
 
       
       return (
@@ -242,22 +242,18 @@ const Home = () => {
                         <QRCodeSVG
                               //création d'un Id pour que l'utilisateur puisse imprimé le QRcode et ou le code barre.
                               id="qr-code-svg"
-                              value={selectedLocation?.Id.toString() ||text}
+                              value={selectedLocation?.name || text} // Ici on utilise le location.name pour générer le QRCode et si il n'y a pas de location.name on utilise le text (exemple)
                               size={sizeState}
                               bgColor={bgColorState}
                               fgColor={colorState}
                               level="Q"
                               includeMargin={false}
-                              // image settings permet d'ajouter un filigrame sur le QRCODE
-                              // imageSettings={{
-                              //       // src: 'https://static.zpao.com/favicon.png',
-                              //       x: undefined,
-                              //       y: undefined,
-                              //       height: 24,
-                              //       width: 24,
-                              //       excavate: true,
-                              // }}
                         />
+                        {/*  Les 3 lignes qui suivent servent a afficher dans un <p> le code quand il n'est pas undefined, juste pour vérifier (au pire tu l'enlève si ça te plait pas :P )  */}
+                        {selectedLocation !== undefined && (
+                              <p>{selectedLocation.name}</p>
+                        )}
+                        {/*  Fin du morceau  */}
                         <div className="container-button">
                               <button
                                     className="buttonCss"
@@ -275,7 +271,7 @@ const Home = () => {
                         <br />
                         <div id="barcode-svg">
                               <Barcode
-                                    value={selectedLocation?.Id.toString() ||text}
+                                    value={selectedLocation?.name || text} // Pareil que pour le QRCode
                                     background={bgColorState}
                                     lineColor={colorState}
                               />
